@@ -1,0 +1,118 @@
+\documentclass{article}
+
+% Frequently Asked Questions, Notes, ....
+% 01) You can use Czech or English to fill in the template.
+% 02) Fill in the metadata section.
+%
+
+\usepackage[a-2u]{pdfx}
+\usepackage[utf8]{inputenc}
+\usepackage{array}
+\usepackage[ddmmyyyy]{datetime}
+\usepackage{geometry}
+\usepackage[skip=10pt]{parskip}
+
+\renewcommand{\dateseparator}{.}
+\renewcommand{\baselinestretch}{1.5}
+
+\geometry{margin=2cm}
+
+\def\ResearchProject{Research project}
+\def\CompanyProject{Company project}
+\def\SoftwareProject{Software project}
+
+% METADATA SECTION START
+\def\StudentsFullName{Bc. Ivona Oboňová}
+\def\Obor{Computer Science - Software and Data Engineering}
+\def\ProjectTitle{Extraction of GroupRule component into standalone service}
+% Use "\ResearchProject", "\CompanyProject", \SoftwareProject"
+\def\ProjectType{\CompanyProject}
+\def\SupervisorFullName{Ing. Pavel Koupil, Ph.D.}
+\def\ConsultantsFullName{Bc. Max Kovykov}
+\def\ExpectedStart{2025-04-01}
+\def\ExpectedEnd{2025-09-01}
+% METADATA SECTION END
+
+\title{\ProjectTitle}
+\author{\StudentFullName}
+
+\begin{document}
+
+\centerline{\Large \textbf{Proposal of team software project}}
+\centerline{ \textbf{Department of Software Engineering}}
+\centerline{ \textbf{Faculty of Mathematics and Physics, Charles University}}
+\bigskip
+{\noindent\begin{tabular*}{\textwidth}{ >{\raggedleft}m{4cm} l}
+ {\bf Solvers:} & \StudentsFullName \\
+ {\bf Study program:} & \Obor \\
+ & \\
+ {\bf Project title:} & \ProjectTitle \\
+ {\bf Project type:} & \ProjectType \\
+ & \\
+ {\bf Supervisor:} & \SupervisorFullName \\  
+ {\bf Consultants:} & \ConsultantsFullName \\
+ & \\
+ {\bf Expected start:} & \ExpectedStart \\
+ {\bf Expected end:} & \ExpectedEnd \\  
+\end{tabular*}}
+
+\section{Introduction}
+
+At \textbf{Avast}, now part of \textbf{Gen Digital}, we specialize in cybersecurity software,
+delivering advanced threat detection powered by AI, along with antivirus protection and privacy
+solutions such as VPNs and data breach monitoring.
+
+Our backend engineering team plays a central role at Avast, supporting malware analysts, security
+researchers, and other experts in enhancing our antivirus products. We process millions of malware
+samples daily, managing critical data, while developing and maintaining backend services and APIs.
+
+One of our core systems, \textbf{Appserver}, is a .NET-based monolithic application running on
+multiple Windows servers. It stores critical data and provides numerous APIs that analysts rely on
+daily to identify and manage malware threats, making it an essential part of our infrastructure.
+Among its many components, \textbf{GroupRules} is responsible for managing string-based and
+multi-string-based malware definitions and rules.
+
+Over time, Appserver has grown significantly, making it increasingly difficult to navigate,
+maintain, and extend with new features. To address these challenges, our team has begun gradually
+decoupling the system into a service-based architecture, migrating its logic into independent
+services.
+
+This project focuses on migrating the GroupRules component from Appserver to a standalone service.
+Transitioning it to a service-based architecture will enhance scalability, maintainability, and
+flexibility. By decoupling this component from the monolith, we aim to improve performance and
+streamline malware definition management, ensuring a more efficient and future-proof solution.
+
+\section{Project description}
+
+As mentioned in the introduction, we aim to migrate the \textbf{GroupRules} component into a
+standalone service, decoupling it from the \textbf{Appserver}, which has grown increasingly
+complex, making it difficult to navigate and extend.
+
+Additionally, the GroupRules component is embedded within a complex relational database schema.
+The current implementation uses a PostgreSQL database to store data, which has a largely
+graph-like structure. As a result, retrieving data in the required format and meeting specific
+conditions is both complex and inefficient, further complicating maintenance and updates.
+
+To address these issues, we will not only extract GroupRules into its own service, but also
+evaluate whether a graph database would be a better fit for storing and managing string-based and
+multi-string-based malware definitions. Given the interconnected nature of the data and its
+relationships, graph databases appear to be a promising alternative. As part of this project, we
+will assess their feasibility. If a graph database proves to be the optimal choice, we will
+identify the best technology and implement GroupRules on top of it. If not, we will continue using
+the existing relational database while refining its structure where possible.
+
+Rather than rewriting the entire component, which would introduce significant complexity and risk,
+we will focus on rebuilding only its core functionality as an independent service. This approach
+allows for gradual integration into the existing infrastructure without disrupting public-facing
+APIs and UIs. By maintaining unchanged external interfaces, we ensure a smooth and controlled
+transition, enabling early validation of the new architecture.
+
+\section{Form of collaboration}
+
+As the project owner, I will lead the design and planning of this migration, with the support of
+our team manager. I will work closely with my team members to ensure a well-structured and
+efficient implementation. The outcome will be a scalable and maintainable standalone service that
+supports future enhancements while providing a seamless experience for the teams relying on
+GroupRules.
+
+\end{document}
